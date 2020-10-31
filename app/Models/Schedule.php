@@ -9,6 +9,10 @@ class Schedule extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'show_id', 'time',
+    ];
+
     public function ticket()
     {
         return $this->hasMany('App\Models\Ticket', 'schedule_id', 'id');

@@ -1,4 +1,6 @@
 <div class="row">
+    {{ \Carbon\Carbon::now()->locale('ru')->isoFormat('dddd, D MMMM YYYY, h:mm') }} 
+
     @foreach($shows as $show)
         <div class="col-4">
             <div class="show-item">
