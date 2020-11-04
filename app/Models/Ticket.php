@@ -10,8 +10,11 @@ class Ticket extends Model
     use HasFactory;
 
     protected $fillable = [
-        'time',
+        'time', 'number', 'schedule_id'
     ];
 
-    
+    public function schedule()
+    {
+        return $this->belongsTo('App\Models\Schedule', 'schedule_id', 'id');
+    }
 }

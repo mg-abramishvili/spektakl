@@ -10,7 +10,7 @@ class Show extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'title', 'description', 'image'
     ];
 
     public function schedule()

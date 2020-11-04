@@ -9,13 +9,73 @@ class ShowController extends Controller
 {
     public function index() {
         $shows = Show::all();
-        return view('front.shows.index', compact('shows'));
+        return view('backend.shows.index', compact('shows'));
     }
 
-    public function show($id)
+    public function create()
     {
-        $show = Show::find($id);
-        $showschedules = Show::where('id', $id)->first();
-        return view('front.shows.show', compact('show', 'showschedules'));
+        return view('backend.shows.create');
+    }
+
+    public function edit($id)
+    {
+        $shows = Show::find($id);
+        return view('backend.shows.edit', compact('shows'));
+    }
+
+    public function file($type)
+    {
+        switch ($type) {
+            case 'upload':
+                return $this->upload();
+        }
+
+        return \Response::make('success', 200, [
+            'Content-Disposition' => 'inline',
+        ]);
+    }
+
+    public function upload()
+    {
+        if (request()->file('image')) {
+            $file = request()->file('image');
+
+            $filename = md5(time() . rand(1, 100000)) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/uploads', $filename);
+
+            return \Response::make('/uploads/' . $filename, 200, [
+                'Content-Disposition' => 'inline',
+            ]);
+
+        }
+    }
+
+    public function delete($id)
+    {
+        $shows = Show::find($id);
+        $shows->delete();
+        return redirect('/shows');
+    }
+
+    public function store()
+    {
+        $data = request()->all();
+        $shows = new Show();
+        $shows->title = $data['title'];
+        $shows->description = $data['description'];
+        $shows->image = $data['image'];
+        $shows->save();
+        return redirect('/shows');
+    }
+
+    public function update()
+    {
+        $data = request()->all();
+        $shows = Show::find($data['id']);
+        $shows->title = $data['title'];
+        $shows->description = $data['description'];
+        $shows->image = $data['image'];
+        $shows->save();
+        return redirect('/shows');
     }
 }

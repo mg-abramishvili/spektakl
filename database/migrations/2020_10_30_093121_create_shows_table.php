@@ -16,6 +16,8 @@ class CreateShowsTable extends Migration
         Schema::create('shows', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->longText('description');
+            $table->string('image');
             $table->timestamps();
         });
     }
