@@ -17,11 +17,9 @@ class ScheduleFrontController extends Controller
     public function show($id)
     {
         $schedule = Schedule::find($id);
-        $scheduletickets = Schedule::with('ticket')->get();
+        $sc = Schedule::with('show')->get();
         $tickets = Ticket::with('schedule.show')->where('schedule_id', $id)->get();
-        $shows = Show::all();
-        $gr = Ticket::with('schedule.show')->get()->groupBy('unique');
-        return view('front.schedules.show', compact('schedule', 'scheduletickets', 'tickets', 'shows', 'gr'));
+        return view('front.schedules.show', compact('schedule', 'tickets', 'sc'));
     }
 
     public function store()
@@ -33,6 +31,7 @@ class ScheduleFrontController extends Controller
         $tickets->number = $data['number'];
         $tickets->unique = $data['schedule_id'].$data['date'];
         $tickets->save();
-        return redirect('/front-schedules/'.$tickets->schedule_id);
+        $ticketlast = Ticket::orderBy('created_at', 'desc')->first();
+        return redirect('/front-tickets/'.$ticketlast->id);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ShowFrontController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ScheduleFrontController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketFrontController;
 
 Route::view('/', 'index');
 
@@ -24,6 +25,7 @@ Route::resource('/front-schedules', ScheduleFrontController::class);
 // Tickets
 Route::resource('/tickets', TicketController::class);
 Route::get('tickets/delete/{id}','App\Http\Controllers\TicketController@delete');
+Route::resource('/front-tickets', TicketFrontController::class);
 
 Auth::routes();
 

@@ -55,6 +55,7 @@
         </tr>
         @foreach ($ticket_list as $ticket)
             <tr>
+            <td><strong>{{$ticket->number}}</strong></td>
                 <td>{{$ticket->schedule->show->title}}</td>
                 <td>{{ Carbon\Carbon::parse($ticket->date)->locale('ru')->isoFormat('dddd, D MMMM YYYY') }}</td>
                 <td>{{$ticket->schedule->time}}</td>

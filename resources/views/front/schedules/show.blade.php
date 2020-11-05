@@ -13,7 +13,7 @@
 
     <form action="/front-schedules" method="post" enctype="multipart/form-data" style="position: absolute; z-index: 20; top: 100px;">@csrf
             <h2>{{ $schedule->time }}</h2>
-
+            <h2>{{ $schedule->show->title }}</h2>
             <div class="row align-items-center mb-2">
                 <dt class="col-sm-3">
                     Schedule ID
