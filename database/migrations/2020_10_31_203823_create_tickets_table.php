@@ -18,6 +18,7 @@ class CreateTicketsTable extends Migration
             $table->string('schedule_id');
             $table->dateTime('date');
             $table->string('number');
+            $table->string('unique');
             $table->timestamps();
         });
     }

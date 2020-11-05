@@ -8,7 +8,7 @@ use App\Models\Show;
 class ShowFrontController extends Controller
 {
     public function index() {
-        $shows = Show::all();
+        $shows = Show::with('schedule')->paginate(1);
         return view('front.shows.index', compact('shows'));
     }
 

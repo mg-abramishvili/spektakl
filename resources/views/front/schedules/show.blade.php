@@ -1,14 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.front')
 @section('content')
 
+<div class="wrapper" style="">
+
+    <div class="bg" style="background: url(/img/1.jpg) top center; background-size: cover;"></div>
+
+    <div class="logo"><img src="/img/logo.png" alt=""></div>
+
+    
 
 
-    <h2>{{ $schedule->time }}</h2>
 
+    <form action="/front-schedules" method="post" enctype="multipart/form-data" style="position: absolute; z-index: 20; top: 100px;">@csrf
+            <h2>{{ $schedule->time }}</h2>
 
-
-    <form action="/front-schedules" method="post" enctype="multipart/form-data">@csrf
-            
             <div class="row align-items-center mb-2">
                 <dt class="col-sm-3">
                     Schedule ID
@@ -26,7 +31,10 @@
                     @if (count($tickets) <= 18)
                         <input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::today()->format('Y-m-d') }}">
                     @elseif (count($tickets) >= 19 && count($tickets) <= 37)
-                        На сегодня билетов больше нет, забронируйте билет на завтра
+                        К сожалению,<br>
+                        свободных мест на данный<br>
+                        сеанс нет, выберите пожалуйста<br>
+                        другой сеанс.
                         <input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::today()->addDays(1)->format('Y-m-d') }}">
                     @elseif (count($tickets) >= 38 && count($tickets) <= 56)
                         На сегодня билетов больше нет, забронируйте билет на послезавтра
@@ -129,19 +137,30 @@
 
         </form>
 
-        @if (count($tickets) <= 18)
-        Свободных мест: {{ 19 - \App\Models\Ticket::all()->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() }}
-        @elseif (count($tickets) >= 19 && count($tickets) <= 37)
-        На сегодня мест нет.
-        Свободных мест на завтра: {{ 19 - \App\Models\Ticket::all()->where('date', \Carbon\Carbon::today()->addDays(1)->format('Y-m-d'))->count() }} ({{\Carbon\Carbon::today()->addDays(1)->locale('ru')->isoFormat('dddd, D MMMM YYYY')}})
-    @endif
 
-        <table class="table table-bordered table-hover">
+
+        @if (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() <= 18)
+            
+            На сегодня {{ 19 - \App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() }} билетов
+
+        @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() >= 19 && \App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->addDays(1)->format('Y-m-d'))->count() <= 19)
+
+            На завтра {{ 19 - \App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->addDays(1)->format('Y-m-d'))->count() }} билетов
+
+        @endif
+
+
+
+
+
+
+
+        <table class="table table-bordered table-hover" style="display:none;">
 @forelse($tickets as $ticket)
 <tr>
 <td style="text-align: left; padding-left: 20px; padding-right: 20px;">
 <h5>{{$ticket->number}}</h5>
-<span>{{$ticket->schedule->show->title}}</span> | <span>{{ Carbon\Carbon::parse($ticket->date)->locale('ru')->isoFormat('dddd, D MMMM YYYY') }}</span> | <span>{{$ticket->schedule->time}}</span>
+<span>{{$ticket->schedule->show->title}}</span> | <span>{{ Carbon\Carbon::parse($ticket->date)->locale('ru')->isoFormat('dddd, D MMMM YYYY') }}</span> | <span>{{$ticket->schedule->time}}</span> | <span>{{$ticket->unique}}</span>
 </td>
 <td style="width: 200px;">
 <a href="/tickets/delete/{{$ticket->id}}" class="btn btn-sm btn-danger">Удалить</a>
@@ -155,5 +174,8 @@
 </tr>
 @endforelse
 </table>
+
+
+</div>
 
 @endsection
