@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-@if (count($tickets) >= 5)
-Билетов больше нет!
-@else
+
 <form action="/tickets" method="post" enctype="multipart/form-data">@csrf
             
             <div class="row align-items-center mb-2">
@@ -21,6 +19,23 @@
 
             <div class="row align-items-center mb-2">
                 <dt class="col-sm-3">
+                    Дата
+                </dt>
+                <dd class="col-sm-9">
+                    @if (count($tickets) <= 2)
+                        <input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::today()->format('Y-m-d') }}">
+                    @elseif (count($tickets) >= 3 && count($tickets) <= 5)
+                        На сегодня билетов больше нет, забронируйте билет на завтра
+                        <input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::today()->addDays(1)->format('Y-m-d') }}">
+                    @elseif (count($tickets) >= 6)
+                        На сегодня билетов больше нет, забронируйте билет на послезавтра
+                        <input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::today()->addDays(2)->format('Y-m-d') }}">
+                    @endif
+                </dd>
+            </div>
+
+            <div class="row align-items-center mb-2">
+                <dt class="col-sm-3">
                     #
                 </dt>
                 <dd class="col-sm-9">
@@ -32,18 +47,30 @@
 
         </form>
 
+<table>
+    @foreach ($grouped as $date => $ticket_list)
+        <tr>
+            <th colspan="3"
+                style="background-color: #F7F7F7">{{ $ticket_list->count() }} билетов</th>
+        </tr>
+        @foreach ($ticket_list as $ticket)
+            <tr>
+                <td>{{$ticket->schedule->show->title}}</td>
+                <td>{{ Carbon\Carbon::parse($ticket->date)->locale('ru')->isoFormat('dddd, D MMMM YYYY') }}</td>
+                <td>{{$ticket->schedule->time}}</td>
+                <td><a href="/tickets/delete/{{$ticket->id}}" class="btn btn-sm btn-danger">Удалить</a></td>
+            </tr>
+        @endforeach
+    @endforeach
+    </table>
 
-    
-@endif
 
-
-
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" style="display:none;">
 @forelse($tickets as $ticket)
 <tr>
 <td style="text-align: left; padding-left: 20px; padding-right: 20px;">
 <h5>{{$ticket->number}}</h5>
-<span>{{$ticket->schedule->show->title}}</span> | <span>{{$ticket->schedule->time}}</span>
+<span>{{$ticket->schedule->show->title}}</span> | <span>{{ Carbon\Carbon::parse($ticket->date)->locale('ru')->isoFormat('dddd, D MMMM YYYY') }}</span> | <span>{{$ticket->schedule->time}}</span>
 </td>
 <td style="width: 200px;">
 <a href="/tickets/delete/{{$ticket->id}}" class="btn btn-sm btn-danger">Удалить</a>

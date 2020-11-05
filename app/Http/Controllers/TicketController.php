@@ -13,8 +13,8 @@ class TicketController extends Controller
         $shows = Show::all();
         $schedules = Schedule::with('show')->get();
         $tickets = Ticket::with('schedule.show')->get();
-        return view('backend.tickets.index', compact('shows', 'schedules', 'tickets'));
-        //dd($tickets);
+        $grouped = Ticket::with('schedule.show')->get()->groupBy('date');
+        return view('backend.tickets.index', compact('shows', 'schedules', 'tickets', 'grouped'));
     }
 
     public function delete($id)
@@ -29,6 +29,7 @@ class TicketController extends Controller
         $data = request()->all();
         $tickets = new Ticket();
         $tickets->schedule_id = $data['schedule_id'];
+        $tickets->date = $data['date'];
         $tickets->number = $data['number'];
         $tickets->save();
         return redirect('/tickets');

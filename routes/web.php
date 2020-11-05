@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ScheduleFrontController;
 use App\Http\Controllers\TicketController;
 
 Route::redirect('/', '/front-shows');
@@ -16,7 +17,7 @@ Route::post('shows/file/{method}','App\Http\Controllers\ShowController@file');
 // Schedules
 Route::resource('/schedules', ScheduleController::class);
 Route::get('schedules/delete/{id}','App\Http\Controllers\ScheduleController@delete');
-Route::resource('/front-schedules', ScheduleController::class);
+Route::resource('/front-schedules', ScheduleFrontController::class);
 
 // Tickets
 Route::resource('/tickets', TicketController::class);

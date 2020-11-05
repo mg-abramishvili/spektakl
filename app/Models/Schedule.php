@@ -10,7 +10,7 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'show_id', 'time',
+        'show_id', 'date', 'time',
     ];
 
     public function ticket()
