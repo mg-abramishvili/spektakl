@@ -2,7 +2,7 @@
 @section('content')
 
 
-<form action="/tickets" method="post" enctype="multipart/form-data">@csrf
+<form action="/tickets" method="post" enctype="multipart/form-data" style="display:none;">@csrf
             
             <div class="row align-items-center mb-2">
                 <dt class="col-sm-3">

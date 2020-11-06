@@ -9,13 +9,14 @@
 
     @foreach($shows as $show)
 
-        {{ $show->title }}
+        <!--{{ $show->title }}-->
 
         <div class="show-image">
             <img src="/img/1.jpg" style="width:100%;">
         </div>
 
         <div class="schedule-list">
+            <p style="font-size: 43px; text-transform: uppercase; text-align: center; margin-bottom: 60px;">Выберите сеанс</p>
             @foreach($show->schedule as $schedule)
             <div class="schedule-item">
                 <a href="/front-schedules/{{ $schedule->id }}" class="btn-standard">

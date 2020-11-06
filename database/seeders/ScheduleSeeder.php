@@ -19,11 +19,19 @@ class ScheduleSeeder extends Seeder
         DB::table('schedules')->insert([
             [
                 'show_id' => '1',
+                'time' => '10:00',
+            ],
+            [
+                'show_id' => '1',
                 'time' => '12:00',
             ],
             [
                 'show_id' => '1',
                 'time' => '14:00',
+            ],
+            [
+                'show_id' => '1',
+                'time' => '16:00',
             ],
         ]);
     }
