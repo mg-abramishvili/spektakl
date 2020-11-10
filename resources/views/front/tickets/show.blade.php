@@ -9,6 +9,7 @@
             width: auto !important;
             height: auto !important;
             overflow: hidden !important;
+            background: transparent !important;
         }
 
         .bg {
@@ -44,7 +45,7 @@
         }
 
         #ticket h2 {
-            font-size: 60vw !important;
+            font-size: 50vw !important;
         }
     }
 </style>
@@ -55,13 +56,13 @@
 
     <div class="logo"><img src="/img/logo.png" alt=""></div>
 
-    <div class="ticket" id="ticket" style="background: url(/img/ticket.svg) center center; background-size: contain; background-repeat: no-repeat; position: absolute; top: 280px; left: 0; right: 0; width: 450px; height: 600px; margin: 0 auto; color: #fff; text-align: center;">
+    <div class="ticket" id="ticket" style="background: url(/img/ticket.svg) center center; background-size: contain; background-repeat: no-repeat; position: absolute; top: 300px; left: 0; right: 0; width: 450px; height: 600px; margin: 0 auto; color: #fff; text-align: center;">
 
-    <p style="text-transform: uppercase; font-size: 30px; font-weight: bold; line-height: 1; margin: 0; margin-top: 90px;">Номер билета</p>
-    <h2 style="font-size: 300px; display: block; line-height: 1; margin: 0; margin-top: 10px;">{{ $tk->number }}</h2>
+    <p style="text-transform: uppercase; font-size: 30px; font-weight: bold; line-height: 1; margin: 0; margin-top: 60px;">Номер билета</p>
+    <h2 style="font-size: 300px; display: block; line-height: 1; margin: 0; margin-top: 10px; margin-bottom: -30px;">{{ $tk->number }}</h2>
 
-    <p style="text-transform: uppercase; font-size: 30px; font-weight: bold; line-height: 1; margin: 0; margin-top: 20px;">{{ $tk->schedule->show->title }}</p>
-    <p style="text-transform: uppercase; font-size: 30px; font-weight: bold; line-height: 1; margin: 0; margin-top: 10px;">{{ Carbon\Carbon::parse($tk->date)->locale('ru')->isoFormat('D.M.YYYY') }} {{ $tk->schedule->time }}</p>
+    <p style="text-transform: uppercase; font-size: 30px; font-weight: bold; line-height: 1; margin: 0; margin-top: 20px;">{{ $tk->schedule->show->title }} <small style="display: block; line-height: 1.5; font-size: 18px; margin-top: 15px;">АРТ-ГРУППА AES+F<br> ВОЗРАСТНОЕ ОГРАНИЧЕНИЕ 18+</small></p>
+    <p style="text-transform: uppercase; font-size: 30px; font-weight: bold; line-height: 1; margin: 0; margin-top: 30px;">{{ Carbon\Carbon::parse($tk->date)->locale('ru')->isoFormat('D.M.YYYY') }} {{ $tk->schedule->time }}</p>
     </div>
 
     <input type='button' id='btn' value='Печать' onclick="window.print()" class="btn-standard" style="position: absolute; z-index: 20; display:none;">
