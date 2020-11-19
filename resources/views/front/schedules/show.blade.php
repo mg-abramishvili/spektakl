@@ -70,57 +70,57 @@
                     #
                 </dt>
                 <dd class="col-sm-9">
-                @if (count($tickets) < 1)
+                @if (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() < 1)
                     <input type="text" class="form-control" name="number" value="1">
-                @elseif (count($tickets) == 1)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 1)
                     <input type="text" class="form-control" name="number" value="2">
-                @elseif (count($tickets) == 2)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 2)
                     <input type="text" class="form-control" name="number" value="3">
-                @elseif (count($tickets) == 3)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 3)
                     <input type="text" class="form-control" name="number" value="4">
-                @elseif (count($tickets) == 4)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 4)
                     <input type="text" class="form-control" name="number" value="5">
-                @elseif (count($tickets) == 5)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 5)
                     <input type="text" class="form-control" name="number" value="6">
-                @elseif (count($tickets) == 6)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 6)
                     <input type="text" class="form-control" name="number" value="7">
-                @elseif (count($tickets) == 7)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 7)
                     <input type="text" class="form-control" name="number" value="8">
-                @elseif (count($tickets) == 8)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 8)
                     <input type="text" class="form-control" name="number" value="9">
-                @elseif (count($tickets) == 9)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 9)
                     <input type="text" class="form-control" name="number" value="10">
-                @elseif (count($tickets) == 10)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 10)
                     <input type="text" class="form-control" name="number" value="11">
-                @elseif (count($tickets) == 11)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 11)
                     <input type="text" class="form-control" name="number" value="12">
-                @elseif (count($tickets) == 12)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 12)
                     <input type="text" class="form-control" name="number" value="13">
-                @elseif (count($tickets) == 13)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 13)
                     <input type="text" class="form-control" name="number" value="14">
-                @elseif (count($tickets) == 14)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 14)
                     <input type="text" class="form-control" name="number" value="15">
-                @elseif (count($tickets) == 15)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 15)
                     <input type="text" class="form-control" name="number" value="16">
-                @elseif (count($tickets) == 16)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 16)
                     <input type="text" class="form-control" name="number" value="17">
-                @elseif (count($tickets) == 17)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 17)
                     <input type="text" class="form-control" name="number" value="18">
-                @elseif (count($tickets) == 18)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 18)
                     <input type="text" class="form-control" name="number" value="19">
-                @elseif (count($tickets) == 19)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 19)
                     <input type="text" class="form-control" name="number" value="1">
-                @elseif (count($tickets) == 20)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 20)
                     <input type="text" class="form-control" name="number" value="2">
-                @elseif (count($tickets) == 21)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 21)
                     <input type="text" class="form-control" name="number" value="3">
-                @elseif (count($tickets) == 22)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 22)
                     <input type="text" class="form-control" name="number" value="4">
-                @elseif (count($tickets) == 23)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 23)
                     <input type="text" class="form-control" name="number" value="5">
-                @elseif (count($tickets) == 24)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 24)
                     <input type="text" class="form-control" name="number" value="6">
-                @elseif (count($tickets) == 25)
+                @elseif (\App\Models\Ticket::all()->where('schedule_id', $schedule->id)->where('date', \Carbon\Carbon::today()->format('Y-m-d'))->count() == 25)
                     <input type="text" class="form-control" name="number" value="7">
                 @elseif (count($tickets) == 26)
                     <input type="text" class="form-control" name="number" value="8">
