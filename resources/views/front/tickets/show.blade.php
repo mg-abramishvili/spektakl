@@ -6,6 +6,7 @@
 
         body,
         .wrapper {
+            margin: 0 auto !important;
             width: auto !important;
             height: auto !important;
             overflow: hidden !important;
@@ -18,11 +19,11 @@
 
         .logo {
             position: relative !important;
-            width: 25% !important;
+            width: 30% !important;
             display: block !important;
             margin: 0 auto !important;
             margin-bottom: 5% !important;
-            top: 5% !important;
+            top: 1vh !important;
         }
 
         #ticket {
@@ -41,7 +42,11 @@
 
         #ticket p {
             font-size: 5vw !important;
-            margin-top: 0 !important;
+            margin-top: 1vh !important;
+        }
+
+        #ticket p small {
+            font-size: 3vw !important;
         }
 
         #ticket h2 {
@@ -77,7 +82,7 @@
     <script>
          setTimeout(function(){
             window.location.href = 'http://localhost/';
-         }, 5000);
+         }, 7000);
       </script>
 
 @endsection
